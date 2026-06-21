@@ -995,11 +995,17 @@ class ProductHelper
                 $db->quoteName('c.title', 'category_title'),
                 $db->quoteName('c.alias', 'category_alias'),
                 $db->quoteName('c.path', 'category_path'),
+                $db->quoteName('cp.title', 'category_parent_title'),
+                $db->quoteName('cp.alias', 'category_parent_alias'),
+                $db->quoteName('cp.path', 'category_parent_path'),
             ])
             ->from($db->quoteName('#__content', 'a'))
             ->leftJoin(
                 $db->quoteName('#__categories', 'c') . ' ON ' . $db->quoteName('c.id') . ' = ' . $db->quoteName('a.catid')
             )
+            ->leftJoin(
+                        $db->quoteName('#__categories', 'cp') . ' ON ' . $db->quoteName('cp.id') . ' = ' . $db->quoteName('c.parent_id')
+                )
             ->where($db->quoteName('a.id') . ' = :articleId')
             ->bind(':articleId', $sourceId, ParameterType::INTEGER);
 

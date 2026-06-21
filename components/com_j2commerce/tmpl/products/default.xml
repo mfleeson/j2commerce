@@ -195,6 +195,19 @@
 				</field>
 
 				<field
+					name="show_parent_category_title"
+						type="radio"
+						layout="joomla.form.field.radio.switcher"
+						label="COM_J2COMMERCE_SHOW_CATEGORY_PARENT_TITLE"
+						description="COM_J2COMMERCE_SHOW_PARENT_CATEGORY_TITLE_DESC"
+						filter="integer"
+						default="0"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field
 					name="show_category_description"
 					type="radio"
 					layout="joomla.form.field.radio.switcher"

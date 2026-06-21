@@ -59,8 +59,22 @@ if ($this->params->get('list_show_filter', 1) && $filterPosition === 'left'){
         <div class="page-header">
             <h1><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
         </div>
-    <?php endif; ?>
+    <?php endif;?>
+    <?php if ($this->params->get('show_category_parent_title', 1) && $this->parent && $this->parent->title) : ?>
+      <?php if(count($this->products) > 0) {
+          if ( ! isset($this->products[0]->tag_id)) {
+              if ($this->products[0]->parent_title == 'ROOT') {
+                  $this->products[0]->parent_title = 'All';
+              }
+              echo '<h3>'.$this->products[0]->source->category_parent_title.'</h3>';
 
+          } else {
+              echo '<h3>'.$this->products[0]->tags_parent_title.'</h3>';
+
+          }
+      }
+    ?>
+    <?php endif;?>
     <?php if ($this->params->get('show_category_title', 1) && $this->parent && $this->parent->title) : ?>
         <?php $categoryTag = $this->params->get('show_page_heading') ? 'h2' : 'h1'; ?>
         <<?php echo $categoryTag; ?> class="j2commerce-category-title mt-3"><?php echo $this->escape($this->parent->title); ?></<?php echo $categoryTag; ?>>
